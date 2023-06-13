@@ -3,8 +3,8 @@
 const characterList = document.querySelector('.list');
 const url = `https://api.disneyapi.dev/character?pageSize=50`;
 const ulFavorites = document.querySelector('.js_listfav');
-const search = document.querySelector('js_inputSearch');
-const searchBtn = document.querySelector('.js_btnSearch')
+const search = document.querySelector('.js_inputSearch');
+const searchBtn = document.querySelector('.js_btnSearch');
 
 
 let disneyDataList = [];
@@ -46,7 +46,7 @@ function init() {
   addEventCharacter();
   }
   function addEventCharacter() {
-    const liElementList = document.querySelectorAll('.js-card');
+    const liElementList = document.querySelectorAll('.character');
     for (const li of liElementList) {
       li.addEventListener('click', handleClick);
     }
@@ -55,7 +55,6 @@ function init() {
   function renderCharacter(Datacharacter) {
     let html = `<li id="${Datacharacter._id}" class="character">
                   <div class="list-box">
-                  
                   <img class="character-img js_img" src="${Datacharacter.imageUrl}" alt="Disney Characters" />
                   <h3 class="character-name js_name">${Datacharacter.name}</h3>
                   </div>
@@ -63,22 +62,33 @@ function init() {
     return html;
     
   }
-  
-//no funciona
+
+
 
     function handleClick(event) {
       
       const id = parseInt(event.currentTarget.id);
+      const liElement = document.getElementById(id);
       
       const selectedCharacter = disneyDataList.find((item) => item._id === id);
       const indexCharacter = disneyDatafav.findIndex((item) => item._id === id);
     
       if (indexCharacter === -1) {
         disneyDatafav.push(selectedCharacter);
+        liElement.classList.add('favorite');
+        
+        
+     
      } else {
+      liElement.classList.remove('favorite');
         disneyDatafav.splice(indexCharacter, 1);
+       
+       
      }
      renderFavoriteList();
+    
+    
+
     }
 
     function renderFavoriteList() {
@@ -89,13 +99,15 @@ function init() {
     }
     //BONUS BUSCADOR
 
-    const handleSearch = (event) => {
-      event.preventDefault();
-      const inputValue = search.value;
-      const filterList = disneyDataList.filter((item) =>
-      item.name.toLowerCase().includes(inputValue.toLowerCase())
-      );
-      renderAllCharacters(filterList);
+
+      const handleSearch = (event) => {
+        event.preventDefault();
+        const inputValue = search.value;
+        const filterList = disneyDataList.filter((item) =>
+          item.name.toLowerCase().includes(inputValue.toLowerCase())
+        );
+       
+        renderAllCharacters(filterList);
       };
       searchBtn.addEventListener('click', handleSearch);
 

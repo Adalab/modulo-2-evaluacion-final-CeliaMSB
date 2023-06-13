@@ -102,22 +102,19 @@
 .title-fav {
   font-size: 20px;
   color: #e756c8;
-  font-weight: bold; }
-
-.box_fav {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; }
+  font-weight: bold;
+  margin-top: 50px; }
 
 .list-fav {
   width: 250px;
-  height: 350px;
-  box-shadow: 0 1px 2px #45046b;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(241, 101, 206, 0.788);
-  text-align: center; }
+  text-align: center;
+  gap: 15px; }
+
+.favorite {
+  background-color: #e756c8; }
 
 /*# sourceMappingURL=main.css.map */
