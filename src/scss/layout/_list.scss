@@ -1,3 +1,4 @@
+
 .search_box{
    
         width: 70%;
@@ -11,7 +12,11 @@
         margin-left: 10%;
         position: absolute;
         transform: translateY(-20px);
-    
+       
+    .input-search{
+        border-color: rgb(19, 16, 206);
+    }
+
 }
 .list-characters{
    
@@ -22,6 +27,7 @@
         margin-bottom: 40px;
         margin-top: 50px;
         gap: 20px;
+       
     }
     .title{
         font-size: 20px;
@@ -36,21 +42,58 @@
         gap: 20px;
         align-items: center;
         justify-content: center;
-        &__element{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-bottom: 30px;
-            width: 250px;
-            &--img{
-                height: 300px;
-                object-fit:scale-down;
-            }
-            &--name{
-                font-size: 15px;
+    
+    }
+    .character{
+        width: 220px;
+        height: 330px;
+        background-color: rgb(181, 250, 229);
+        box-shadow: 1px 2px 3px rgb(3, 136, 114);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 30px;
+        width: 250px;
+
+
+    }
+    .character-img {
+        height: 300px;
+        object-fit:scale-down;
+
+    }
+    .character-name{
+        font-size: 16px;
                 font-weight: bold;
-                color: black;
-            }
-        }
+                color: rgb(7, 141, 182);
+    }
+    .main{
+   
+        display: flex;
+        flex-direction: row;
+        background-color:rgb(222, 228, 222)
+    }
+    
+    .title-fav{
+        font-size: 20px;
+        color: rgb(231, 86, 200);
+        font-weight: bold
+    }
+    .box_fav{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        
+    }
+    .list-fav{
+    width: 250px;
+    height: 350px;
+    box-shadow: 0 1px 2px rgb(69, 4, 107);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(241, 101, 206, 0.788);
+    text-align: center;
     }

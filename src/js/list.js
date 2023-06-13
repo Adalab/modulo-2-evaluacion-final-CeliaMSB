@@ -3,6 +3,8 @@
 const characterList = document.querySelector('.list');
 const url = `https://api.disneyapi.dev/character?pageSize=50`;
 const ulFavorites = document.querySelector('.js_listfav');
+const search = document.querySelector('js_inputSearch');
+const searchBtn = document.querySelector('.js_btnSearch')
 
 
 let disneyDataList = [];
@@ -19,9 +21,9 @@ function init() {
 
     fetch(url)
   .then((response) => response.json())
-  .then((listData) => {
-    console.log(listData)
-    disneyDataList = listData.data;
+  .then((data) => {
+    console.log(data)
+    disneyDataList = data.data;
     console.log(disneyDataList.name);
     renderAllCharacters(disneyDataList);
     localStorage.setItem('character', JSON.stringify(disneyDataList));
@@ -33,6 +35,8 @@ function init() {
 
   
   function renderAllCharacters (list) {
+    ulFavorites.innerHTML = '';
+
     for (const oneCharacter of list ) {
       characterList.innerHTML += renderCharacter(oneCharacter);
     }
@@ -48,12 +52,13 @@ function init() {
     }
     }
 
-  function renderCharacter(disneyDataObj) {
-    let html = `<li id="${disneyDataObj.__id}" class="js-card">
-                  <article class="list-box">
-                  <img class="character-img js_img" src="${disneyDataObj.imageUrl}" alt="Disney Characters" />
-                  <p class="character-name js_name">${disneyDataObj.name}</p>
-                  </article>
+  function renderCharacter(Datacharacter) {
+    let html = `<li id="${Datacharacter._id}" class="character">
+                  <div class="list-box">
+                  
+                  <img class="character-img js_img" src="${Datacharacter.imageUrl}" alt="Disney Characters" />
+                  <h3 class="character-name js_name">${Datacharacter.name}</h3>
+                  </div>
               </li>`;
     return html;
     
@@ -65,8 +70,8 @@ function init() {
       
       const id = parseInt(event.currentTarget.id);
       
-      const selectedCharacter = disneyDataList.find((item) => item.id === id);
-      const indexCharacter = disneyDatafav.findIndex((item) => item.id === id);
+      const selectedCharacter = disneyDataList.find((item) => item._id === id);
+      const indexCharacter = disneyDatafav.findIndex((item) => item._id === id);
     
       if (indexCharacter === -1) {
         disneyDatafav.push(selectedCharacter);
@@ -82,7 +87,17 @@ function init() {
         ulFavorites.innerHTML += renderCharacter(fav);
       }
     }
+    //BONUS BUSCADOR
 
+    const handleSearch = (event) => {
+      event.preventDefault();
+      const inputValue = search.value;
+      const filterList = disneyDataList.filter((item) =>
+      item.name.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      renderAllCharacters(filterList);
+      };
+      searchBtn.addEventListener('click', handleSearch);
 
 
 
