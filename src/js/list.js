@@ -80,8 +80,9 @@ function init() {
         
      
      } else {
-      liElement.classList.remove('favorite');
+      
         disneyDatafav.splice(indexCharacter, 1);
+        liElement.classList.remove('favorite');
        
        
      }
@@ -109,6 +110,7 @@ function init() {
        
         renderAllCharacters(filterList);
       };
+
       searchBtn.addEventListener('click', handleSearch);
 
 
